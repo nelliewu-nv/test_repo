@@ -1,0 +1,31 @@
+variables:
+
+  # compressed 4b RLE
+  dram_metadata_datawidth: 4
+
+  # compressed 4b RLE
+  glb_data_storage_depth: 16384
+  glb_metadata_storage_width: 256
+  glb_metadata_storage_depth: 256
+  glb_metadata_storage_block_size: 64
+  glb_metadata_width: 4
+  glb_total_memory_depth: 16384      # do not allow extra memory for metadata storage
+  glb_metadata_counter_width: 0
+
+  # compressed 4b RLE
+  ispad_data_storage_depth: 16
+  ispad_metadata_storage_width: 8  
+  ispad_metadata_storage_depth: 8
+  ispad_metadata_width: 4
+  ispad_metadata_storage_block_size: 2
+  ispad_total_memory_depth: 16        # do not allow extra memory for metadata storage
+  ispad_metadata_counter_width: 0
+
+  # compressed 4b RLE
+  wspad_data_storage_depth: 256
+  wspad_metadata_storage_width: 32
+  wspad_metadata_storage_depth: 32
+  wspad_metadata_width: 4
+  wspad_metadata_storage_block_size: 8
+  wspad_total_memory_depth: 256      # do not allow extra memory for metadata storage
+  wspad_metadata_counter_width: 0

@@ -1,0 +1,27 @@
+sparse_optimizations:
+  targets:
+    - name: ifmap_spad
+      action-gating:
+        data-spaces:
+          - name: Inputs
+            actions:
+              - name: read
+                criteria: [Weights]
+
+    - name: weights_spad
+      compression:
+        data-spaces:
+          - name: Weights
+            format: [uncompressed-bitmask]
+      action-gating:
+        data-spaces:
+          - name: Weights
+            actions:
+              - name: read
+                criteria: [Weights]
+
+    - name: MACs
+      action-gating:
+        actions:
+          - name: compute
+            criteria: [Weights]

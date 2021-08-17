@@ -1,0 +1,42 @@
+sparse_optimizations:
+  targets:
+    - name: DRAM
+      compression:
+        data-spaces:
+          - name: Weights
+            format: [compressed-RLE]
+          - name: Outputs
+            format: [compressed-RLE]
+
+      action-skipping:
+        data-spaces:
+          - name: Weights
+            actions:
+              - name: read
+                criteria: [Weights]
+              - name: write
+                criteria: [Weights]
+          - name: Outputs
+            actions:
+              - name: read
+                criteria: [Outputs]
+              - name: write
+                criteria: [Outputs]
+                
+    - name: weights_spad
+      compression:
+        data-spaces:
+          - name: Weights
+            format: [uncompressed-bitmask]
+      action-gating:
+        data-spaces:
+          - name: Weights
+            actions:
+              - name: read
+                criteria: [Weights]
+
+    - name: MACs
+      action-gating:
+        actions:
+          - name: compute
+            criteria: [Weights]

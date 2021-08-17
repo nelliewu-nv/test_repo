@@ -1,0 +1,31 @@
+variables:
+
+  # compressed 4b RLE
+  dram_metadata_datawidth: 4
+
+  # uncompressed
+  glb_data_storage_depth: 16384
+  glb_metadata_storage_width: 0
+  glb_metadata_storage_depth: 0
+  glb_metadata_storage_block_size: 0
+  glb_metadata_width: 0
+  glb_total_memory_depth: 16384      # do not allow extra memory for metadata storage
+  glb_metadata_counter_width: 14
+
+  # bitvector gating
+  ispad_data_storage_depth: 16
+  ispad_metadata_storage_width: 16
+  ispad_metadata_storage_depth: 1
+  ispad_metadata_width: 1
+  ispad_metadata_storage_block_size: 16
+  ispad_total_memory_depth: 16
+  ispad_metadata_counter_width: 4
+
+  # bitvector gating
+  wspad_data_storage_depth: 256
+  wspad_metadata_storage_width: 16
+  wspad_metadata_storage_depth: 16
+  wspad_metadata_width: 1
+  wspad_metadata_storage_block_size: 16
+  wspad_total_memory_depth: 256
+  wspad_metadata_counter_width: 8
