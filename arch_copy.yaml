@@ -1,0 +1,107 @@
+architecture:
+  version: 0.3
+  subtree:
+    - name: eyeriss_168
+      attributes:
+        technology: 16nm
+      local:
+        - name: Wire #to work with the current timeloop hack...
+          class: wire
+          attributes:
+            length: 1
+            datawidth: 1
+        
+        - name: DRAM
+          class: DRAM_metadata
+          attributes:
+            width: 64
+            block-size: 4
+            word-bits: 16
+            metadata_datawidth: dram_metadata_datawidth
+        
+        - name: shared_glb
+          class: smartbuffer_metadata
+          attributes:
+            memory_width: 64
+            memory_depth: glb_total_memory_depth
+            num-banks: 1
+            n_banks: 1
+            block-size: 4
+            meshX: 1
+            read_bandwidth: 16
+            write_bandwidth: 16
+            data_storage_depth: glb_data_storage_depth
+            data_storage_width: memory_width
+            metadata_storage_width: glb_metadata_storage_width
+            metadata_storage_depth: glb_metadata_storage_depth
+            metadata_datawidth: glb_metadata_width
+            metadata_counter_width: glb_metadata_counter_width
+            metadata-block-size: glb_metadata_storage_block_size
+
+        - name: DummyBuffer[0..13]
+          class: SRAM
+          attributes:
+            width: 16
+            depth: 0
+            n_banks: 1
+            datawidth: 16
+            entries: 0
+            meshX: 14
+
+      subtree:
+        - name: PE[0..167]
+          local:
+            - name: ifmap_spad
+              class: smartbuffer_metadata
+              attributes:
+                memory_depth: ispad_total_memory_depth
+                memory_width: 16
+                n_banks: 1
+                datawidth: 16
+                meshX: 14
+                read_bandwidth: 2
+                write_bandwidth: 2
+                data_storage_depth: ispad_data_storage_depth
+                data_storage_width: memory_width
+                metadata_storage_width: ispad_metadata_storage_width
+                metadata_storage_depth: ispad_metadata_storage_depth
+                metadata_datawidth: ispad_metadata_width
+                metadata_counter_width: ispad_metadata_counter_width
+                metadata-block-size: ispad_metadata_storage_block_size
+
+            - name: weights_spad
+              class: smartbuffer_metadata
+              attributes:
+                memory_depth: wspad_total_memory_depth
+                memory_width: 16
+                n_banks: 1
+                datawidth: 16
+                meshX: 14
+                read_bandwidth: 2
+                write_bandwidth: 2
+                data_storage_depth: wspad_data_storage_depth
+                data_storage_width: memory_width
+                metadata_storage_width: wspad_metadata_storage_width
+                metadata_storage_depth: wspad_metadata_storage_depth
+                metadata_datawidth: wspad_metadata_width
+                metadata_counter_width: wspad_metadata_counter_width
+                metadata-block-size: wspad_metadata_storage_block_size
+
+            - name: psum_spad
+              class: smartbuffer
+              attributes:
+                memory_depth: 16
+                memory_width: 16
+                data_storage_depth: 16
+                data_storage_width: 16
+                n_banks: 1
+                datawidth: 16
+                meshX: 14
+                read_bandwidth: 2
+                write_bandwidth: 2
+
+            - name: MACs
+              class: mac
+              attributes:
+                meshX: 14
+                datawidth: 16
